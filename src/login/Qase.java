@@ -45,7 +45,7 @@ public class Qase {
 
 	
 	String actualtitle=driver.getTitle();
-	String Expectedtitle="Qase | Projectss";
+	String Expectedtitle="Qase | Projects";
 	
 	if(Expectedtitle.equals(actualtitle))
 			{
