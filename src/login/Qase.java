@@ -14,15 +14,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Qase {
 
-		public static WebDriver d;
+		public static WebDriver driver;
+		
 
 		public static void main(String[] args) throws IOException, InterruptedException {
 			
 
-	System.setProperty("webdriver.chrome.driver", "/home/yogita/Downloads/chromedriver_linux64/chromedriver");
+//	System.setProperty("webdriver.chrome.driver", "/home/yogita/Downloads/chromedriver_linux64/chromedriver");
 	System.setProperty("webdriver.gecko.driver", "/home/yogita/Downloads/geckodriver-v0.26.0-linux64/geckodriver");
-
-
 
 
 	Properties Property= new Properties();
@@ -32,23 +31,33 @@ public class Qase {
 	Property.load(objfile);
 	System.out.println(Property.getProperty("Location"));
 	System.out.println(Property.getProperty("URL"));
-	d =new FirefoxDriver();
+	driver =new FirefoxDriver();
 
 
-	d.get(Property.getProperty("URL"));
-	d.findElement(By.xpath("//a[@id='signin']")).click();
+	driver.get(Property.getProperty("URL"));
+	driver.findElement(By.xpath("//a[@id='signin']")).click();
 
-	d.findElement(By.xpath("//input[@id='inputEmail']")).sendKeys(Property.getProperty("Username"));
+	driver.findElement(By.xpath("//input[@id='inputEmail']")).sendKeys(Property.getProperty("Username"));
 	Thread.sleep(1000);
 
-	d.findElement(By.xpath("//input[@id='inputPassword']")).sendKeys(Property.getProperty("Password"));
-	d.findElement(By.xpath("//button[@class='btn btn-primary btn-lg btn-block']")).click();
+	driver.findElement(By.xpath("//input[@id='inputPassword']")).sendKeys(Property.getProperty("Password"));
+	driver.findElement(By.xpath("//button[@class='btn btn-primary btn-lg btn-block']")).click();
 
-
-	String title=d.getTitle();
-	System.out.println(title);
-
-
+	
+	String actualtitle=driver.getTitle();
+	String Expectedtitle="Qase | Projectss";
+	
+	if(Expectedtitle.equals(actualtitle))
+			{
+		System.out.println("Pass");
+		
+			}
+	else
+	{
+		System.out.println("Fail");
+	}
+	
+	
 		}
 	}
 
